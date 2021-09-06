@@ -7,6 +7,7 @@ const {AdminCoinTransfer} = require('../helper/ethHelper');
 // const { balanceMainBNB, coinBalanceBNB, BNBTransfer, CoinTransfer, AdminCoinTransfer } = require('../helper/bscHelper');
 
 const { balanceMainETH, ETHTransfer } = require('../helper/ethHelper');
+const { Userwallet } = require("../models/userModel");
 
 const signupReward = '10';
 const referReward = '10';
@@ -15,6 +16,10 @@ const adminAddress = process.env.ADMIN;
 
 
 const createWallet = async (req, res) => {
+    const user = await Userwallet.findOne({user_id: req.session.re_us_id});
+    if(user){
+        res.redirect("/dashboard");
+    }
     let err_msg = req.flash('err_msg');
     let success_msg = req.flash('success_msg');
     let passphrase = "";

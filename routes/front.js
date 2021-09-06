@@ -110,8 +110,6 @@ router.get("/Create-wallet-success", userControllers.walletSuccess);
 
 router.post("/refs-by-date", userControllers.getrefdate);
 
-router.get("/Create-wallet-success", userControllers.walletSuccess);
-
 router.post("/currency-value", userControllers.getCurrencyValue);
 
 router.get("/change-password", isUser, function (req, res) {
