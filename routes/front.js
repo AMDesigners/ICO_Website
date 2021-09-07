@@ -37,6 +37,13 @@ router.get("/login", userControllers.loginPage);
 
 router.get("/logout", userControllers.logout);
 
+router.post("/users-by-date", async (req, res) => {
+  const date = req.body.date;
+  console.log(date);
+  const data = await Tokendetails.find({ created_at: date });
+  res.json(data);
+});
+
 //***************** get recive-rowan **************//
 router.get("/receive-ebt", isUser, function (req, res) {
   err_msg = req.flash("err_msg");
